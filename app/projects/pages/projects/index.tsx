@@ -2,8 +2,9 @@ import React, { Suspense } from "react"
 import Layout from "app/layouts/Layout"
 import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz"
 import getProjects from "app/projects/queries/getProjects"
+import { Box, Button, Heading, Link as CLink, Skeleton } from "@chakra-ui/core"
 
-const ITEMS_PER_PAGE = 100
+const ITEMS_PER_PAGE = 10
 
 export const ProjectsList = () => {
   const router = useRouter()
@@ -18,24 +19,27 @@ export const ProjectsList = () => {
   const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
   return (
-    <div>
-      <ul>
-        {projects.map((project) => (
-          <li key={project.id}>
-            <Link href="/projects/[projectId]" as={`/projects/${project.id}`}>
-              <a>{project.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <Box my={4} mx={4}>
+      <Heading>Projects</Heading>
+      <div>
+        <ul>
+          {projects.map((project) => (
+            <li key={project.id}>
+              <Link href="/projects/[projectId]" as={`/projects/${project.id}`}>
+                <CLink>{project.name}</CLink>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
-        Next
-      </button>
-    </div>
+        <Button isDisabled={page === 0} onClick={goToPreviousPage}>
+          Previous
+        </Button>
+        <Button isDisabled={!hasMore} onClick={goToNextPage}>
+          Next
+        </Button>
+      </div>
+    </Box>
   )
 }
 
@@ -44,11 +48,20 @@ const ProjectsPage: BlitzPage = () => {
     <div>
       <p>
         <Link href="/projects/new">
-          <a>Create Project</a>
+          <Button>Create Project</Button>
         </Link>
       </p>
 
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <Box w={200}>
+            <Heading>Projects</Heading>
+            <Skeleton height="20px" my="10px" />
+            <Skeleton height="20px" my="10px" />
+            <Skeleton height="20px" my="10px" />
+          </Box>
+        }
+      >
         <ProjectsList />
       </Suspense>
     </div>
