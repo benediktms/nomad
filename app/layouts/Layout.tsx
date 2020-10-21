@@ -1,5 +1,6 @@
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 import { Head } from "blitz"
+import { Navbar } from "../components/Navbar"
 
 type LayoutProps = {
   title?: string
@@ -13,6 +14,9 @@ const Layout = ({ title, children }: LayoutProps) => {
         <title>{title || "nomad"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* Below is the equivalent of the HTML Body tag */}
+      {/* Navbar component shoud be available on every page */}
+      <Navbar />
 
       {children}
     </>
