@@ -19,7 +19,7 @@ const Layout = ({ title, children }: LayoutProps) => {
       {/* Below is the equivalent of the HTML Body tag */}
 
       {/* the box component acts as a container to ensure there is some standard padding everywnere in our app */}
-      <Box py={4} px={4} h="100vh">
+      <Box py={4} px={4} minH="90vh">
         {/* Navbar component shoud be available on every page */}
         <Navbar />
 
