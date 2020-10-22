@@ -16,7 +16,11 @@ export const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by Blitz.js{" "}
+          Made with{" "}
+          <span role="img" aria-label="love">
+            ❤️
+          </span>{" "}
+          & Powered by Blitz.js{" "}
           <span role="img" aria-label="bolt">
             ⚡
           </span>
