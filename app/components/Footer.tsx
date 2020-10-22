@@ -4,7 +4,7 @@ import React from "react"
 export const Footer = () => {
   return (
     <footer>
-      <Flex justifyContent="center">
+      <Flex justifyContent="center" bg="gray.200">
         <a
           href="https://blitzjs.com?utm_source=blitz-new&utm_medium=app-template&utm_campaign=blitz-new"
           target="_blank"

@@ -24,9 +24,8 @@ const Layout = ({ title, children }: LayoutProps) => {
         <Navbar />
 
         {children}
-
-        <Footer />
       </Box>
+      <Footer />
     </>
   )
 }
