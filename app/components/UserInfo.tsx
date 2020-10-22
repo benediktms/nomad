@@ -1,36 +1,35 @@
-import React from "react"
-import { useMutation, Link } from "blitz"
-import logout from "../auth/mutations/logout"
-import { useCurrentUser } from "../hooks/useCurrentUser"
-import { Box, Button, Flex } from "@chakra-ui/core"
+import React from "react";
+import { useMutation, Link } from "blitz";
+import logout from "../auth/mutations/logout";
+import { useCurrentUser } from "../hooks/useCurrentUser";
+import { Box, Button, Flex, useToast } from "@chakra-ui/core";
 
 export const UserInfo = () => {
-  const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout)
+  const currentUser = useCurrentUser();
+  const [logoutMutation] = useMutation(logout);
+  const toast = useToast();
 
   if (currentUser) {
     return (
-      <Flex>
+      <Flex align="center">
+        <Box mx={3}>
+          <strong>Hi, {currentUser.firstName}</strong>
+        </Box>
         <Button
           variantColor="purple"
           onClick={async () => {
-            await logoutMutation()
+            await logoutMutation();
           }}
         >
           Logout
         </Button>
-        <Box ml={3}>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-        </Box>
       </Flex>
-    )
+    );
   } else {
     return (
       <Flex>
         <Link href="/signup">
-          <Button variantColor="purple">
+          <Button variantColor="purple" ml={2}>
             <strong>Sign Up</strong>
           </Button>
         </Link>
@@ -40,6 +39,6 @@ export const UserInfo = () => {
           </Button>
         </Link>
       </Flex>
-    )
+    );
   }
-}
+};
