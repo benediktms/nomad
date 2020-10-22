@@ -16,7 +16,7 @@
     "schema": "db/schema.prisma"
   },
   "prettier": {
-    "semi": false,
+    "semi": true,
     "printWidth": 80
   },
   "husky": {
