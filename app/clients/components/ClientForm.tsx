@@ -1,11 +1,11 @@
 import React from "react";
 
-type ProjectFormProps = {
+type ClientFormProps = {
   initialValues: any;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
-const ProjectForm = ({ initialValues, onSubmit }: ProjectFormProps) => {
+const ClientForm = ({ initialValues, onSubmit }: ClientFormProps) => {
   return (
     <form
       onSubmit={(event) => {
@@ -20,4 +20,4 @@ const ProjectForm = ({ initialValues, onSubmit }: ProjectFormProps) => {
   );
 };
 
-export default ProjectForm;
+export default ClientForm;

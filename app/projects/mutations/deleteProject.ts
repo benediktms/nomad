@@ -1,12 +1,15 @@
-import { Ctx } from "blitz"
-import db, { ProjectDeleteArgs } from "db"
+import { Ctx } from "blitz";
+import db, { ProjectDeleteArgs } from "db";
 
-type DeleteProjectInput = Pick<ProjectDeleteArgs, "where">
+type DeleteProjectInput = Pick<ProjectDeleteArgs, "where">;
 
-export default async function deleteProject({ where }: DeleteProjectInput, ctx: Ctx) {
-  ctx.session.authorize()
+export default async function deleteProject(
+  { where }: DeleteProjectInput,
+  ctx: Ctx
+) {
+  ctx.session.authorize();
 
-  const project = await db.project.delete({ where })
+  const project = await db.project.delete({ where });
 
-  return project
+  return project;
 }

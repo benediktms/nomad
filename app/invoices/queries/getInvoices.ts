@@ -1,30 +1,30 @@
 import { Ctx } from "blitz";
-import db, { FindManyProjectArgs } from "db";
+import db, { FindManyInvoiceArgs } from "db";
 
-type GetProjectsInput = Pick<
-  FindManyProjectArgs,
+type GetInvoicesInput = Pick<
+  FindManyInvoiceArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 
-export default async function getProjects(
-  { where, orderBy, skip = 0, take }: GetProjectsInput,
+export default async function getInvoices(
+  { where, orderBy, skip = 0, take }: GetInvoicesInput,
   ctx: Ctx
 ) {
   ctx.session.authorize();
 
-  const projects = await db.project.findMany({
+  const invoices = await db.invoice.findMany({
     where,
     orderBy,
     take,
     skip,
   });
 
-  const count = await db.project.count();
+  const count = await db.invoice.count();
   const hasMore = typeof take === "number" ? skip + take < count : false;
   const nextPage = hasMore ? { take, skip: skip + take! } : null;
 
   return {
-    projects,
+    invoices,
     nextPage,
     hasMore,
     count,

@@ -1,12 +1,22 @@
-import { Ctx } from "blitz"
-import db, { ProjectUpdateArgs } from "db"
+import { Ctx } from "blitz";
+import db, { ProjectUpdateArgs } from "db";
 
-type UpdateProjectInput = Pick<ProjectUpdateArgs, "where" | "data">
+type UpdateProjectInput = {
+  where: ProjectUpdateArgs["where"];
+  data: Omit<ProjectUpdateArgs["data"], "client">;
+  clientId: number;
+};
 
-export default async function updateProject({ where, data }: UpdateProjectInput, ctx: Ctx) {
-  ctx.session.authorize()
+export default async function updateProject(
+  { where, data }: UpdateProjectInput,
+  ctx: Ctx
+) {
+  ctx.session.authorize();
 
-  const project = await db.project.update({ where, data })
+  // Don't allow updating
+  delete (data as any).client;
 
-  return project
+  const project = await db.project.update({ where, data });
+
+  return project;
 }
