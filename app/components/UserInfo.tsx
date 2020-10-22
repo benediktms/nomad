@@ -30,12 +30,12 @@ export const UserInfo = () => {
     return (
       <Flex>
         <Link href="/signup">
-          <Button>
+          <Button variantColor="purple">
             <strong>Sign Up</strong>
           </Button>
         </Link>
         <Link href="/login">
-          <Button ml={2}>
+          <Button variantColor="purple" ml={2}>
             <strong>Login</strong>
           </Button>
         </Link>
