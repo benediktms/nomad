@@ -10,7 +10,7 @@ const Home: BlitzPage = () => {
     <Flex direction="column" justifyContent="spaceBetween">
       <main>
         <Box>
-          <Heading textAlign="center">Hellow, World!</Heading>
+          <Heading textAlign="center">Hello, World!</Heading>
         </Box>
       </main>
     </Flex>

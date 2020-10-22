@@ -3,7 +3,7 @@ import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 import { queryCache } from "react-query"
 import LoginForm from "app/auth/components/LoginForm"
 
-import { CSSReset, ThemeProvider } from "@chakra-ui/core"
+import { ColorModeProvider, CSSReset, ThemeProvider } from "@chakra-ui/core"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -11,18 +11,20 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ThemeProvider>
-      <CSSReset />
-      <ErrorBoundary
-        FallbackComponent={RootErrorFallback}
-        resetKeys={[router.asPath]}
-        onReset={() => {
-          // This ensures the Blitz useQuery hooks will automatically refetch
-          // data any time you reset the error boundary
-          queryCache.resetErrorBoundaries()
-        }}
-      >
-        {getLayout(<Component {...pageProps} />)}
-      </ErrorBoundary>
+      <ColorModeProvider>
+        <CSSReset />
+        <ErrorBoundary
+          FallbackComponent={RootErrorFallback}
+          resetKeys={[router.asPath]}
+          onReset={() => {
+            // This ensures the Blitz useQuery hooks will automatically refetch
+            // data any time you reset the error boundary
+            queryCache.resetErrorBoundaries()
+          }}
+        >
+          {getLayout(<Component {...pageProps} />)}
+        </ErrorBoundary>
+      </ColorModeProvider>
     </ThemeProvider>
   )
 }
