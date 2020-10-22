@@ -12,6 +12,7 @@ export const UserInfo = () => {
     return (
       <Flex>
         <Button
+          variantColor="purple"
           onClick={async () => {
             await logoutMutation()
           }}

@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Button } from "@chakra-ui/core"
+import { Box, Flex, Heading } from "@chakra-ui/core"
 import React, { Suspense } from "react"
 import { UserInfo } from "./UserInfo"
 
