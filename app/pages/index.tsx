@@ -3,7 +3,6 @@ import { BlitzPage } from "blitz";
 import { Box, Button, Flex, Heading, Link } from "@chakra-ui/core";
 
 import Layout from "app/layouts/Layout";
-// import { useCurrentUser } from "../hooks/useCurrentUser"
 
 const Home: BlitzPage = () => {
   return (
