@@ -1,13 +1,12 @@
 import React from "react";
 import { useMutation, Link } from "blitz";
-import logout from "../auth/mutations/logout";
-import { useCurrentUser } from "../hooks/useCurrentUser";
-import { Box, Button, Flex, useToast } from "@chakra-ui/core";
+import logout from "../../auth/mutations/logout";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { Box, Button, Flex } from "@chakra-ui/core";
 
 export const UserInfo = () => {
   const currentUser = useCurrentUser();
   const [logoutMutation] = useMutation(logout);
-  const toast = useToast();
 
   if (currentUser) {
     return (

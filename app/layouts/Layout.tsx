@@ -1,13 +1,13 @@
-import React, { ReactNode } from "react"
-import { Head } from "blitz"
-import { Navbar } from "../components/Navbar"
-import { Box } from "@chakra-ui/core"
-import { Footer } from "../components/Footer"
+import React, { ReactNode } from "react";
+import { Head } from "blitz";
+import { Navbar } from "../components/Navbar/Navbar";
+import { Box } from "@chakra-ui/core";
+import { Footer } from "../components/Footer/Footer";
 
 type LayoutProps = {
-  title?: string
-  children: ReactNode
-}
+  title?: string;
+  children: ReactNode;
+};
 
 const Layout = ({ title, children }: LayoutProps) => {
   return (
@@ -27,7 +27,7 @@ const Layout = ({ title, children }: LayoutProps) => {
       </Box>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
