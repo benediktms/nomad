@@ -19,6 +19,6 @@ describe("Home", () => {
       </ThemeProvider>
     );
     expect(screen.getByText(/hello, world!/i)).toBeInTheDocument();
-    expect(screen.getByText(/add a new client/i)).toBeInTheDocument();
+    expect(screen.getByText(/show clients/i)).toBeInTheDocument();
   });
 });
