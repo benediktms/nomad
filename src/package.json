@@ -37,7 +37,6 @@
     "@prisma/cli": "2.9.0",
     "@prisma/client": "2.9.0",
     "blitz": "0.24.3",
-    "cypress": "5.5.0",
     "emotion-theming": "10.0.27",
     "final-form": "4.20.1",
     "react": "0.0.0-experimental-7f28234f8",
