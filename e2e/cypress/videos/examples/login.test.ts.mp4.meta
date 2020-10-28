@@ -1,0 +1,26 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=-8071
+END=2955
+title=index page goes to the signup page
+[CHAPTER]
+TIMEBASE=1/1000
+START=-614
+END=13991
+title=index page goes to the login page
+[CHAPTER]
+TIMEBASE=1/1000
+START=17596
+END=28617
+title=index page allows the user to signup
+[CHAPTER]
+TIMEBASE=1/1000
+START=24118
+END=39648
+title=index page allows the user to log in
+[CHAPTER]
+TIMEBASE=1/1000
+START=44455
+END=55191
+title=index page allows the user to logout
