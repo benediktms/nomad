@@ -1,9 +1,25 @@
 import React, { Suspense } from "react";
+import {
+  Link,
+  usePaginatedQuery,
+  useRouter,
+  BlitzPage,
+  useMutation,
+} from "blitz";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Link as CLink,
+  useColorMode,
+} from "@chakra-ui/core";
 import Layout from "app/layouts/Layout";
-import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz";
 import getClients from "app/clients/queries/getClients";
+import deleteClient from "../../mutations/deleteClient";
 
-const ITEMS_PER_PAGE = 100;
+const ITEMS_PER_PAGE = 10;
 
 export const ClientsList = () => {
   const router = useRouter();
@@ -16,42 +32,79 @@ export const ClientsList = () => {
 
   const goToPreviousPage = () => router.push({ query: { page: page - 1 } });
   const goToNextPage = () => router.push({ query: { page: page + 1 } });
+  const { colorMode } = useColorMode();
+  const [deleteClientMutation] = useMutation(deleteClient);
 
   return (
-    <div>
-      <ul>
+    <main>
+      {/* <ul> */}
+      <Box my={5}>
         {clients.map((client) => (
-          <li key={client.id}>
+          // <li key={client.id}>
+          <Box
+            p={3}
+            mb={3}
+            bg={colorMode === "light" ? "gray.50" : "gray.700"}
+            rounded="lg"
+          >
             <Link href="/clients/[clientId]" as={`/clients/${client.id}`}>
-              <a>{client.name}</a>
+              <Flex justify="space-between" align="center">
+                <p>
+                  <CLink>{client.name}</CLink>
+                </p>
+                <Box>
+                  <Link href={`clients/${client.id}/edit`}>
+                    <Button mr={2}>
+                      <Icon name="edit" aria-label="edit client" />
+                    </Button>
+                  </Link>
+                  <Button
+                    onClick={async () => {
+                      if (window.confirm("This will be deleted")) {
+                        await deleteClientMutation({
+                          where: { id: client.id },
+                        });
+                        router.push("/clients");
+                      }
+                    }}
+                  >
+                    <Icon name="delete" aria-label="delete client" />
+                  </Button>
+                </Box>
+              </Flex>
             </Link>
-          </li>
+          </Box>
+          // </li>
         ))}
-      </ul>
+      </Box>
+      {/* </ul> */}
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
+      <Button isDisabled={page === 0} onClick={goToPreviousPage}>
         Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
+      </Button>
+      <Button isDisabled={!hasMore} onClick={goToNextPage} ml={2}>
         Next
-      </button>
-    </div>
+      </Button>
+    </main>
   );
 };
 
 const ClientsPage: BlitzPage = () => {
   return (
-    <div>
-      <p>
+    <Flex w="75%" mx="auto" my={4} justifyContent="center" direction="column">
+      <Heading as="h2" mb={3}>
+        My Clients
+      </Heading>
+      <Box>
         <Link href="/clients/new">
-          <a>Create Client</a>
+          <Button variantColor="purple">Create Client</Button>
         </Link>
-      </p>
+      </Box>
 
       <Suspense fallback={<div>Loading...</div>}>
         <ClientsList />
       </Suspense>
-    </div>
+    </Flex>
   );
 };
 

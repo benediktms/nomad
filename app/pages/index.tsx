@@ -6,14 +6,14 @@ import Layout from "app/layouts/Layout";
 
 const Home: BlitzPage = () => {
   return (
-    <Box>
+    <main>
       <Heading textAlign="center">Hello, World!</Heading>
       <Flex w="75%" justifyContent="center" mx="auto" my={4}>
-        <Link href="/clients/new">
-          <Button variantColor="purple">Add a new Client</Button>
+        <Link href="/clients">
+          <Button variantColor="purple">Show Clients</Button>
         </Link>
       </Flex>
-    </Box>
+    </main>
   );
 };
 
