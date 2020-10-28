@@ -1,5 +1,4 @@
 # dependencies
-../e2e/node_modules
 node_modules
 .yarn/cache
 .yarn/unplugged
