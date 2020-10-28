@@ -24,7 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-// @ts-ignore
 Cypress.Commands.add("signup", ({ email, password }) => {
   cy.contains("button", "Sign Up").click();
 
